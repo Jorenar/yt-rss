@@ -1,0 +1,9 @@
+body {
+  display: flex;
+}
+
+main {
+  margin-left:  auto;
+  margin-right: auto;
+  text-align: center;
+}
