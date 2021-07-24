@@ -20,30 +20,12 @@ async function getIdOfPlaylistOrChannel(url) {
   }
 }
 
-async function getIdByChannelName(name) {
-  const p = (t) => new Promise((resolve) => resolve(
-    async function() {
-      try {
-        return await getChannelId(`https://www.youtube.com/${t}/${name}`);
-      } catch(e) {
-        return null;
-      }
-    }()
-  ));
-
-  const responses = await Promise.all([ p("c"), p("user"), p("channel") ]);
-
-  for (let r of responses) {
-    if (r) { return r; }
-  }
-}
-
 async function getId(input) {
   try {
     url = `http://www.youtube.com/${input.match(patterns.validate)[1]}`;
     return await getIdOfPlaylistOrChannel(url);
   } catch (e) {
-    return await getIdByChannelName(input);
+    return await getChannelId(`https://www.youtube.com/${input}`);
   }
 }
 
@@ -52,8 +34,10 @@ async function getRss() {
   let input = document.querySelector("#url").value.trim();
   try {
     const { type, id } = await getId(input);
-    rss.textContent = `https://www.youtube.com/feeds/videos.xml?${type}_id=${id}`;
+    const url = `https://www.youtube.com/feeds/videos.xml?${type}_id=${id}`;
+    rss.href = rss.textContent = url;
   } catch (e) {
+    rss.removeAttribute("href");
     rss.textContent = "Invalid input";
   }
 }
