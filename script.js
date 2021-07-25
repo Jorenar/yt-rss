@@ -22,7 +22,7 @@ async function getIdOfPlaylistOrChannel(url) {
 
 async function getId(input) {
   try {
-    url = `http://www.youtube.com/${input.match(patterns.validate)[1]}`;
+    let url = `http://www.youtube.com/${input.match(patterns.validate)[1]}`;
     return await getIdOfPlaylistOrChannel(url);
   } catch (e) {
     return await getChannelId(`https://www.youtube.com/${input}`);
