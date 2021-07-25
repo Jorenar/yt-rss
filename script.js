@@ -1,5 +1,5 @@
 const input = document.querySelector("input");
-const rss = document.querySelector("#rss > a");
+const rss = document.querySelector("#rss");
 
 const patterns = {
   "validate": /^(?:https?:\/\/)?(?:.*\.)?youtube\.com\/((c|user|channel|playlist|watch).+?)(\/|$)/,
@@ -32,15 +32,28 @@ async function getId(input) {
 
 async function getRss() {
   rss.textContent = "...";
+  rss.removeAttribute("href");
+  rss.classList.remove("error");
+  rss.parentNode.removeAttribute("style");
+
   let val = input.value.trim();
   try {
     const { type, id } = await getId(val);
     const url = `https://www.youtube.com/feeds/videos.xml?${type}_id=${id}`;
     rss.href = rss.textContent = url;
   } catch (e) {
-    rss.removeAttribute("href");
     rss.textContent = "Invalid input";
+    rss.className = "error";
   }
+}
+
+function copyClip() {
+  let text = document.createElement("textarea");
+  text.value = rss.href;
+  document.body.appendChild(text);
+  text.select();
+  document.execCommand("copy");
+  document.body.removeChild(text);
 }
 
 input.addEventListener("keyup", (e) => {

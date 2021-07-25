@@ -2,6 +2,7 @@ main {
   margin: 2em auto 10em auto;
   max-width: 700px;
   text-align: center;
+  font-family: monospace;
 }
 
 #icon {
@@ -9,11 +10,12 @@ main {
   margin: 20px;
 }
 
-#inputDiv {
+#inputDiv, #rssDiv {
   display: flex;
+  margin-top: 20px;
 }
 
-input {
+input, #rss {
   border-radius: 10px 0 0 10px;
   border: 1px solid #555;
   border-right: 0;
@@ -22,7 +24,19 @@ input {
   padding: 1em;
 }
 
-input ~ button {
+input:focus, input:focus + button {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+#rss {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  color: inherit;
+}
+
+button {
   background: #ccc;
   border-radius: 0 10px 10px 0;
   border: 1px solid #555;
@@ -31,18 +45,16 @@ input ~ button {
   width: 30px;
 }
 
-input ~ button:hover {
+button:hover {
   background: #ddd;
 }
 
-input:focus, input:focus ~ button {
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+#rss:not([href]) {
+  text-align: center;
 }
 
-#rss {
-  flex-basis: 100%;
-  padding: 1em;
-  text-align: center;
+#rss.error {
+  color: red;
 }
 
 @keyframes octocat-wave {

@@ -21,9 +21,12 @@
     <img id="icon" src="icon.svg">
     <div id="inputDiv">
       <input type="text" placeholder="URL or username" autocomplete="off">
-      <button type="submit" onclick="getRss()">&gt;</button>
+      <button title="Get RSS" type="submit" onclick="getRss()">&gt;</button>
     </div>
-    <div id="rss"> <a></a> </div>
+    <div id="rssDiv" style="display: none">
+      <a id="rss"></a>
+      <button title="Copy to clipboard" onclick="copyClip()">&#x2398</button>
+    </div>
   </main>
   <script src="script.js"></script>
 </body>
