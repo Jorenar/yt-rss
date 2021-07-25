@@ -42,7 +42,7 @@ async function getRss() {
     const url = `https://www.youtube.com/feeds/videos.xml?${type}_id=${id}`;
     rss.href = rss.textContent = url;
   } catch (e) {
-    rss.textContent = "Invalid input";
+    rss.textContent = "No such channel or playlist";
     rss.className = "error";
   }
 }
@@ -54,6 +54,10 @@ function copyClip() {
   text.select();
   document.execCommand("copy");
   document.body.removeChild(text);
+
+  let c = document.querySelector("#copied");
+  c.style = "opacity: 1";
+  window.setTimeout(() => c.removeAttribute("style"), 1000);
 }
 
 input.addEventListener("keyup", (e) => {

@@ -50,11 +50,25 @@ button:hover {
 }
 
 #rss:not([href]) {
+  border-radius: 10px;
+  border-right: 1px solid #555;
   text-align: center;
+}
+
+#rss:not([href]) + button {
+  display: none;
 }
 
 #rss.error {
   color: red;
+}
+
+#copied {
+  color: #999;
+  float: right;
+  margin-top: 1em;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 @keyframes octocat-wave {
