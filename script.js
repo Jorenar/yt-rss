@@ -1,4 +1,5 @@
-const rss = document.querySelector("#rss");
+const input = document.querySelector("input");
+const rss = document.querySelector("#rss > a");
 
 const patterns = {
   "validate": /^(?:https?:\/\/)?(?:.*\.)?youtube\.com\/((c|user|channel|playlist|watch).+?)(\/|$)/,
@@ -31,9 +32,9 @@ async function getId(input) {
 
 async function getRss() {
   rss.textContent = "...";
-  let input = document.querySelector("#url").value.trim();
+  let val = input.value.trim();
   try {
-    const { type, id } = await getId(input);
+    const { type, id } = await getId(val);
     const url = `https://www.youtube.com/feeds/videos.xml?${type}_id=${id}`;
     rss.href = rss.textContent = url;
   } catch (e) {
@@ -41,3 +42,10 @@ async function getRss() {
     rss.textContent = "Invalid input";
   }
 }
+
+input.addEventListener("keyup", (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    getRss();
+  }
+});

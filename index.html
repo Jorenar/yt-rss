@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Get YouTube RSS</title>
+  <title>Get RSS of YouTube channel or playlist</title>
   <meta name="author" content="Jorengarenar">
   <meta name="keywords" content="youtube,rss,convert,url,channel,playlist">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,13 +19,11 @@
   </a>
   <main>
     <img id="icon" src="icon.svg">
-    <div>
-      <input id="url" type="text" placeholder="URL or username">
-      <button onclick="getRss()">Submit</button>
+    <div id="inputDiv">
+      <input type="text" placeholder="URL or username" autocomplete="off">
+      <button type="submit" onclick="getRss()">&gt;</button>
     </div>
-    <div>
-      <a id="rss"></a>
-    </div>
+    <div id="rss"> <a></a> </div>
   </main>
   <script src="script.js"></script>
 </body>
