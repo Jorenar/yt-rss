@@ -1,3 +1,5 @@
+"use strict";
+
 const input = document.querySelector("input");
 const rss = document.querySelector("#rss");
 
