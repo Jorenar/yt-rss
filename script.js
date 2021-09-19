@@ -4,7 +4,7 @@ const input = document.querySelector("input");
 const rss = document.querySelector("#rss");
 
 const patterns = {
-  "validate": /^(?:https?:\/\/)?(?:.*\.)?youtube\.com\/((c|user|channel|playlist|watch).+?)(\/|$)/,
+  "validate": /^(?:https?:\/\/)?(?:.*\.)?youtube\.com\/((c|user|channel|playlist|watch).+)(\/|$)/,
   "playlist": /^.*?youtube\.com\/(?:playlist\?|watch\?v=.+?&)list=(.+?)(?:&index=\d+|$)/,
 };
 
