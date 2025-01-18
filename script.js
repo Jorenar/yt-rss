@@ -11,7 +11,7 @@ const patterns = {
 async function getChannelId(url) {
   const response = await fetch(`https://api.codetabs.com/v1/proxy?quest=${url}`);
   const text = await response.text();
-  let id = text.match(/<meta itemprop="channelId" content="(.+?)">/)[1];
+  let id = text.match(/<meta itemprop="identifier" content="(.+?)">/)[1];
   return { "type": "channel", "id": id };
 }
 
